@@ -1,0 +1,18 @@
+# ============================================================================
+# AETHER.OS RAG System — full application requirements
+# (web server + RAG backend). Install with: pip install -r requirements.txt
+# ============================================================================
+
+# --- Web server (main.py) ---
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9   # required by FastAPI for UploadFile/Form parsing
+psutil>=5.9
+
+# --- Core RAG pipeline (backend/rag_pipeline.py) ---
+numpy>=1.24
+faiss-cpu>=1.7.4          # falls back to a pure-NumPy engine automatically if absent
+pypdf>=4.0                # only needed if your knowledge base contains .pdf files
+sentence-transformers>=2.6  # local embeddings; omit if you only use Ollama embeddings
+requests>=2.31            # only needed if using --embedding-mode ollama
+google-genai>=0.3         # Gemini synthesis

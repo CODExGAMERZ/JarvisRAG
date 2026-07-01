@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AETHER.OS | Knowledge Base Manager</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Inter:wght@400;500&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#6700b5",
+                    "surface-container-low": "#1c1b1d",
+                    "tertiary-fixed-dim": "#dcb8ff",
+                    "on-background": "#e5e1e4",
+                    "on-primary-container": "#006a71",
+                    "surface": "#131315",
+                    "on-surface-variant": "#b9cacb",
+                    "outline": "#849495",
+                    "surface-container-highest": "#353437",
+                    "on-secondary-fixed-variant": "#633f00",
+                    "error": "#ffb4ab",
+                    "on-secondary": "#452b00",
+                    "primary-fixed-dim": "#00dbe7",
+                    "surface-container-lowest": "#0e0e10",
+                    "primary-fixed": "#74f5ff",
+                    "surface-dim": "#131315",
+                    "primary-container": "#00f2ff",
+                    "background": "#131315",
+                    "error-container": "#93000a",
+                    "tertiary": "#fef5ff",
+                    "surface-tint": "#00dbe7",
+                    "on-tertiary-fixed": "#2c0051",
+                    "on-surface": "#e5e1e4",
+                    "inverse-primary": "#00696f",
+                    "surface-container": "#201f21",
+                    "tertiary-container": "#ead2ff",
+                    "outline-variant": "#3a494b",
+                    "on-tertiary": "#480081",
+                    "secondary-fixed-dim": "#ffb952",
+                    "primary": "#e1fdff",
+                    "surface-bright": "#39393b",
+                    "on-tertiary-container": "#8624de",
+                    "secondary-container": "#ffaa00",
+                    "inverse-on-surface": "#313032",
+                    "secondary": "#ffcf90",
+                    "on-error-container": "#ffdad6",
+                    "on-error": "#690005",
+                    "on-primary-fixed-variant": "#004f54",
+                    "on-secondary-fixed": "#291800",
+                    "secondary-fixed": "#ffddb4",
+                    "on-secondary-container": "#694300",
+                    "on-primary-fixed": "#002022",
+                    "surface-variant": "#353437",
+                    "surface-container-high": "#2a2a2c",
+                    "inverse-surface": "#e5e1e4",
+                    "on-primary": "#00363a",
+                    "tertiary-fixed": "#efdbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "unit": "4px",
+                    "margin-safe": "24px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-md": ["Geist"],
+                    "data-mono": ["JetBrains Mono"],
+                    "display-lg": ["Geist"],
+                    "headline-md-mobile": ["Geist"],
+                    "body-base": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.15em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "data-mono": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "450"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-base": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="knowledge.css"/>
+</head>
+<body class="flex flex-col min-h-screen">
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
+<nav class="fixed top-0 left-0 w-full h-16 z-40 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/20 flex justify-between items-center px-margin-safe">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]">AETHER.OS</span>
+<div class="hidden md:flex gap-6">
+<a class="font-data-mono text-data-mono text-primary border-b-2 border-primary py-1" href="/knowledge.html">KNOWLEDGE_BASE</a>
+<a class="font-data-mono text-data-mono text-on-surface-variant hover:text-primary transition-colors duration-300 py-1" href="/command.html">NEURAL_CORE</a>
+<a class="font-data-mono text-data-mono text-on-surface-variant hover:text-primary transition-colors duration-300 py-1" href="/config.html">ANALYTICS</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex bg-surface-container-low px-3 py-1 border-b border-outline-variant/40 items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-data-mono text-on-surface w-48 placeholder:text-outline/50 uppercase" placeholder="QUERY_INDEX..." type="text" onkeydown="if(event.key==='Enter') window.location.href='/stream.html?query='+encodeURIComponent(this.value)"/>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded transition-all active:opacity-80 active:scale-95" onclick="window.location.href='/config.html'">
+<span class="material-symbols-outlined text-primary">memory</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded transition-all active:opacity-80 active:scale-95" onclick="window.location.href='/command.html'">
+<span class="material-symbols-outlined text-primary">sensors</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-variant rounded transition-all active:opacity-80 active:scale-95" onclick="window.location.href='/config.html'">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="flex pt-16 flex-1 h-screen">
+<aside class="hidden md:flex w-64 flex-col bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 py-gutter gap-4 sticky top-16">
+<nav class="flex-1 flex flex-col gap-1 px-3 mt-4">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant/60 hover:bg-surface-container-highest/50 hover:text-primary transition-all duration-200 group" href="/command.html">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">radar</span>
+<span class="font-label-caps text-label-caps">COMMAND</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant/60 hover:bg-surface-container-highest/50 hover:text-primary transition-all duration-200 group" href="/stream.html">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">hub</span>
+<span class="font-label-caps text-label-caps">STREAM</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-primary border-r-2 border-primary bg-primary/5 transition-all duration-200 group" href="/knowledge.html">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">database</span>
+<span class="font-label-caps text-label-caps">KNOWLEDGE</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant/60 hover:bg-surface-container-highest/50 hover:text-primary transition-all duration-200 group" href="/config.html">
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">settings</span>
+<span class="font-label-caps text-label-caps">CONFIG</span>
+</a>
+</nav>
+<div class="mt-auto px-6 space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-3 tracking-widest glow-cyan hover:brightness-110 transition-all active:scale-[0.98]" onclick="window.location.href='/config.html'">
+                    DEPLOY AGENT
+                </button>
+<div class="flex flex-col gap-2 pt-4 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 text-on-surface-variant/60 hover:text-primary transition-colors" href="/config.html">
+<span class="material-symbols-outlined text-[18px]">code</span>
+<span class="font-label-caps text-[10px]">LOGS</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant/60 hover:text-primary transition-colors" href="/command.html">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+<span class="font-label-caps text-[10px]">NETWORK</span>
+</a>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto bg-surface relative">
+<div class="bg-surface-container-high/40 border-b border-outline-variant/10 px-8 py-2 flex justify-between items-center sticky top-0 z-30 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant">STATUS:</span>
+<span id="sync-status-badge" class="font-data-mono text-[10px] text-primary">RUNNING_STABLE</span>
+</div>
+<div class="h-3 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant">SYSTEM_UPTIME:</span>
+<span id="uptime-label" class="font-data-mono text-[10px] text-on-surface">--:--:--</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant">TOTAL_VECTORS:</span>
+<span id="total-vectors-label" class="font-data-mono text-[10px] text-primary">--</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant">DOCUMENTS:</span>
+<span id="total-files-label" class="font-data-mono text-[10px] text-on-surface">--_ACTIVE</span>
+</div>
+</div>
+</div>
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<header class="flex justify-between items-end">
+<div>
+<div class="font-label-caps text-primary mb-1">SYSTEM.KB_MANAGER // V.4.0</div>
+<h1 class="font-display-lg text-display-lg uppercase tracking-tighter text-on-surface">Knowledge Index</h1>
+</div>
+<div class="text-right">
+<div class="font-data-mono text-data-mono text-on-surface-variant">STABLE_GROUNDED_RAG</div>
+<div class="font-data-mono text-data-mono text-primary flex items-center justify-end gap-2" id="vitals-latency-label">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                            LATENCY: --ms
+                        </div>
+</div>
+</header>
+<div class="flex gap-4 border-b border-outline-variant/10">
+<button class="px-6 py-3 font-label-caps text-label-caps text-primary border-b-2 border-primary" id="upload-tab-btn">UPLOAD NEW FILE</button>
+<button class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" onclick="window.location.href='/stream.html'">SEARCH INDEX</button>
+<button class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" onclick="triggerSync()">RE-INDEX ALL</button>
+</div>
+
+<input type="file" id="hidden-file-input" accept=".txt,.md,.pdf" class="hidden"/>
+
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-12 lg:col-span-8 glass-panel min-h-[450px] relative overflow-hidden group">
+<div class="absolute top-3 left-4 font-data-mono text-[10px] text-outline/50">SYS.VIS_01 // VECTOR_CLOUD_MAPPING</div>
+<div class="absolute inset-0 p-12 flex items-center justify-center">
+<div class="relative w-full h-full border border-outline-variant/10 rounded">
+<div class="absolute inset-0 overflow-hidden" id="vector-cloud-container">
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
+<div class="w-full h-px bg-primary/40"></div>
+<div class="h-full w-px bg-primary/40 absolute"></div>
+</div>
+<div class="absolute top-[15%] left-[20%] w-32 h-32 border border-dashed border-primary/20 rounded-full animate-pulse pointer-events-none"></div>
+<div class="absolute bottom-[20%] right-[25%] w-40 h-40 border border-dashed border-secondary/20 rounded-full animate-pulse pointer-events-none" style="animation-delay: 1.5s"></div>
+<div class="absolute top-[40%] right-[10%] w-24 h-24 border border-dashed border-tertiary-fixed-dim/20 rounded-full animate-pulse pointer-events-none" style="animation-delay: 0.8s"></div>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 flex flex-col gap-1 items-end">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[9px] text-on-surface-variant">EMBEDDING DIMENSIONS:</span>
+<span class="font-data-mono text-[11px] text-primary" id="dim-label">-- </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[9px] text-on-surface-variant">ACTIVE CLUSTERS:</span>
+<span class="font-data-mono text-[11px] text-primary">1 (LOCAL_KB)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-[9px] text-on-surface-variant">INDEX STATUS:</span>
+<span class="font-data-mono text-[11px] text-secondary">READY</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 grid grid-rows-2 gap-6">
+<div class="glass-panel p-6 flex flex-col justify-between">
+<div class="font-data-mono text-[10px] text-outline/50 uppercase">SYS.STAT_01 // DATABASE_STATUS_CHECK</div>
+<div class="space-y-4 py-2">
+<div>
+<div class="flex justify-between font-label-caps text-[10px] mb-1">
+<span class="text-on-surface-variant">LOCAL_KB_FILES</span>
+<span class="text-primary font-data-mono" id="real-kb-size-label">-- KB</span>
+</div>
+<div class="h-1.5 bg-surface-container-high w-full">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-caps text-[10px] mb-1">
+<span class="text-on-surface-variant">SQL_CACHE_INDEX</span>
+<span class="text-secondary font-data-mono">0.0 KB (INACTIVE)</span>
+</div>
+<div class="h-1.5 bg-surface-container-high w-full">
+<div class="bg-secondary h-full w-[0%]"></div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-end pt-2 border-t border-outline-variant/10">
+<div class="font-data-mono text-[11px] text-on-surface-variant uppercase tracking-tighter">TOTAL_SIZE_ALLOCATED</div>
+<div class="font-data-mono text-data-mono text-on-surface font-bold" id="total-allocated-size-label">-- KB / 25 MB MAX</div>
+</div>
+</div>
+<div class="glass-panel p-6 flex flex-col justify-between border-primary/20">
+<div class="font-data-mono text-[10px] text-outline/50 uppercase">SYS.STAT_02 // SYSTEM_SYNC_HEALTH</div>
+<div class="flex items-center justify-center py-4">
+<div class="relative w-24 h-24">
+<svg class="w-full h-full rotate-[-90deg]">
+<circle class="text-surface-container-high" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="4"></circle>
+<circle id="sync-score-circle" class="text-primary glow-cyan" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="0" stroke-width="4"></circle>
+</svg>
+<div id="sync-score-val" class="absolute inset-0 flex items-center justify-center font-data-mono text-lg text-primary">100</div>
+</div>
+</div>
+<div class="font-label-caps text-center text-label-caps text-on-surface-variant uppercase">INDEXED_RELIABILITY_SCORE</div>
+</div>
+</div>
+<div class="col-span-12 glass-panel p-0 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low/30">
+<div class="font-label-caps text-label-caps text-primary">INDEXED_DOCUMENTS_LIST</div>
+<div class="flex gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors" onclick="loadDocuments()">
+<span class="material-symbols-outlined">sync</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-data-mono text-data-mono">
+<thead class="bg-surface-container-high/20 border-b border-outline-variant/10">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">DOCUMENT_NAME</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">CHUNKS</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">FILE_SIZE</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">LOCAL_RELATIVE_PATH</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">STATUS</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant">ACTIONS</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5" id="document-table-body">
+<tr>
+    <td colspan="6" class="px-6 py-8 text-center text-on-surface-variant/40 italic">Loading documents list...</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 border-t border-outline-variant/10 flex justify-between bg-surface-container-low/30">
+<span id="showing-docs-count-label" class="font-data-mono text-[12px] text-on-surface-variant">SHOWING 0 DOCUMENTS</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed bottom-8 right-8 z-50">
+<div class="relative w-16 h-16 rounded-full glass-panel border border-primary/20 flex items-center justify-center glow-cyan group cursor-pointer hover:scale-110 transition-transform" onclick="triggerSync()">
+<div class="absolute inset-0 rounded-full border border-primary animate-ping opacity-20"></div>
+<div class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary/30 to-transparent animate-spin-slow"></div>
+<span class="material-symbols-outlined text-primary absolute">psychology</span>
+</div>
+</div>
+
+<script>
+    const tableBody = document.getElementById('document-table-body');
+    const showingDocsLabel = document.getElementById('showing-docs-count-label');
+    const hiddenFileInput = document.getElementById('hidden-file-input');
+    const uploadTabBtn = document.getElementById('upload-tab-btn');
+    
+    const uptimeLabel = document.getElementById('uptime-label');
+    const syncStatusBadge = document.getElementById('sync-status-badge');
+    const totalVectorsLabel = document.getElementById('total-vectors-label');
+    const totalFilesLabel = document.getElementById('total-files-label');
+    const vitalsLatencyLabel = document.getElementById('vitals-latency-label');
+    const dimLabel = document.getElementById('dim-label');
+    const realKbSizeLabel = document.getElementById('real-kb-size-label');
+    const totalAllocatedSizeLabel = document.getElementById('total-allocated-size-label');
+    const syncScoreVal = document.getElementById('sync-score-val');
+    const syncScoreCircle = document.getElementById('sync-score-circle');
+
+    uploadTabBtn.addEventListener('click', () => {
+        hiddenFileInput.click();
+    });
+
+    hiddenFileInput.addEventListener('change', () => {
+        const file = hiddenFileInput.files[0];
+        if (!file) return;
+        
+        if (file.size > 25 * 1024 * 1024) {
+            alert("File size exceeds 25 MB limit.");
+            return;
+        }
+        
+        uploadFile(file);
+    });
+
+    function uploadFile(file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("overwrite", "true");
+        
+        syncStatusBadge.innerText = "UPLOADING...";
+        syncStatusBadge.className = "font-data-mono text-[10px] text-yellow-500 animate-pulse";
+        
+        fetch('/api/documents/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => {
+            if (res.status === 409) {
+                throw new Error("File already exists. Overwrite requested but rejected.");
+            }
+            if (!res.ok) {
+                return res.json().then(e => { throw new Error(e.detail || "Upload failed"); });
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log("Uploaded successfully", data);
+            triggerSync();
+        })
+        .catch(err => {
+            alert(err.message || err);
+            loadDocuments();
+        });
+    }
+
+    function escapeHtml(text) {
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function deleteDocument(filename) {
+        if (!confirm(`Are you sure you want to delete ${filename}?`)) return;
+        
+        fetch(`/api/documents/${encodeURIComponent(filename)}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Delete failed.");
+            return res.json();
+        })
+        .then(() => {
+            loadDocuments();
+        })
+        .catch(err => alert(err));
+    }
+
+    function viewDocument(filename) {
+        window.open(`/api/documents/${encodeURIComponent(filename)}/raw`, '_blank');
+    }
+
+    tableBody.addEventListener('click', (e) => {
+        const viewBtn = e.target.closest('.doc-view-btn');
+        if (viewBtn) {
+            viewDocument(viewBtn.dataset.filename);
+            return;
+        }
+        const deleteBtn = e.target.closest('.doc-delete-btn');
+        if (deleteBtn) {
+            deleteDocument(deleteBtn.dataset.filename);
+        }
+    });
+
+    function triggerSync() {
+        syncStatusBadge.innerText = "TRIGGERING_SYNC...";
+        syncStatusBadge.className = "font-data-mono text-[10px] text-yellow-400 animate-pulse";
+        
+        fetch('/api/documents/sync', {
+            method: 'POST'
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Sync trigger failed.");
+            return res.json();
+        })
+        .then(data => {
+            console.log("Sync triggered", data);
+            pollSyncStatus();
+        })
+        .catch(err => alert(err));
+    }
+
+    function pollSyncStatus() {
+        fetch('/api/documents/sync/status')
+            .then(res => res.json())
+            .then(job => {
+                if (job.status === 'RUNNING') {
+                    syncStatusBadge.innerText = "INDEXING_DOCS...";
+                    syncStatusBadge.className = "font-data-mono text-[10px] text-yellow-400 animate-pulse";
+                    setTimeout(pollSyncStatus, 1500);
+                } else if (job.status === 'SUCCESS') {
+                    syncStatusBadge.innerText = "SYNC_SUCCESS";
+                    syncStatusBadge.className = "font-data-mono text-[10px] text-green-400";
+                    loadDocuments();
+                    setTimeout(() => {
+                        syncStatusBadge.innerText = "RUNNING_STABLE";
+                        syncStatusBadge.className = "font-data-mono text-[10px] text-primary";
+                    }, 5000);
+                } else if (job.status === 'FAILED') {
+                    syncStatusBadge.innerText = "SYNC_FAILED";
+                    syncStatusBadge.className = "font-data-mono text-[10px] text-red-400";
+                    alert("Sync job failed: " + job.error);
+                    loadDocuments();
+                } else {
+                    syncStatusBadge.innerText = "RUNNING_STABLE";
+                    syncStatusBadge.className = "font-data-mono text-[10px] text-primary";
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
+    function loadDocuments() {
+        fetch('/api/documents')
+            .then(res => res.json())
+            .then(docs => {
+                let html = '';
+                let totalSize = 0;
+                let pendingCount = 0;
+                
+                if (docs.length === 0) {
+                    html = `<tr><td colspan="6" class="px-6 py-8 text-center text-on-surface-variant/40 italic">No documents in local knowledge base folder. Click UPLOAD to add documents.</td></tr>`;
+                } else {
+                    docs.forEach(doc => {
+                        totalSize += doc.size_bytes;
+                        if (doc.status === 'PENDING') pendingCount++;
+                        
+                        const icon = doc.filename.endsWith('.pdf') ? 'picture_as_pdf' : 'description';
+                        const statusClass = doc.status === 'INDEXED' 
+                            ? 'bg-primary/10 text-primary border border-primary/20' 
+                            : 'bg-yellow-500/10 text-yellow-500 border border-yellow-500/20';
+                            
+                        html += `
+                        <tr class="hover:bg-primary/5 transition-colors group">
+                            <td class="px-6 py-4 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-outline">${icon}</span>
+                                <span class="text-on-surface font-data-mono">${escapeHtml(doc.filename)}</span>
+                            </td>
+                            <td class="px-6 py-4 font-data-mono text-primary">${doc.chunks.toLocaleString()}</td>
+                            <td class="px-6 py-4 font-data-mono">${doc.size_formatted}</td>
+                            <td class="px-6 py-4 font-data-mono text-[11px] text-on-surface-variant truncate max-w-[200px]" title="${escapeHtml(doc.relative_path)}">
+                                local://my_knowledge_base/${escapeHtml(doc.relative_path)}
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-0.5 rounded-full text-[10px] font-data-mono uppercase ${statusClass}">${doc.status}</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex gap-3 opacity-30 group-hover:opacity-100 transition-opacity">
+                                    <button class="hover:text-primary doc-view-btn" data-filename="${escapeHtml(doc.filename)}"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+                                    <button class="hover:text-error doc-delete-btn" data-filename="${escapeHtml(doc.filename)}"><span class="material-symbols-outlined text-[18px]">delete_forever</span></button>
+                                </div>
+                            </td>
+                        </tr>`;
+                    });
+                }
+                tableBody.innerHTML = html;
+                showingDocsLabel.innerText = `SHOWING ${docs.length} DOCUMENTS`;
+                
+                const formattedTotalSize = formatSize(totalSize);
+                realKbSizeLabel.innerText = formattedTotalSize;
+                totalAllocatedSizeLabel.innerText = `${formattedTotalSize} / 25 MB MAX`;
+                
+                let score = 100;
+                if (docs.length > 0) {
+                    score = Math.round(((docs.length - pendingCount) / docs.length) * 100);
+                }
+                syncScoreVal.innerText = score;
+                const offset = 251.2 - (251.2 * score) / 100;
+                syncScoreCircle.style.strokeDashoffset = offset;
+            })
+            .catch(err => {
+                console.error(err);
+                tableBody.innerHTML = `<tr><td colspan="6" class="px-6 py-8 text-center text-red-400">Failed to load documents list from API server.</td></tr>`;
+            });
+    }
+
+    function formatSize(size_bytes) {
+        if (size_bytes < 1024) return `${size_bytes} B`;
+        if (size_bytes < 1024 * 1024) return `${(size_bytes / 1024).toFixed(1)} KB`;
+        return `${(size_bytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    function updateVitals() {
+        fetch('/api/system/vitals')
+            .then(res => res.json())
+            .then(data => {
+                totalVectorsLabel.innerText = data.total_vectors;
+                totalFilesLabel.innerText = `${data.total_files}_ACTIVE`;
+                vitalsLatencyLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> LATENCY: ${data.latency_ms}ms`;
+                
+                const totalSeconds = data.uptime_seconds;
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                const pad = num => String(num).padStart(2, '0');
+                uptimeLabel.innerText = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            })
+            .catch(err => console.error("Error updating vitals:", err));
+    }
+
+    loadDocuments();
+    updateVitals();
+    setInterval(updateVitals, 2500);
+
+    fetch('/api/documents/sync/status')
+        .then(res => res.json())
+        .then(job => {
+            if (job.status === 'RUNNING') pollSyncStatus();
+        });
+
+    function updateEmbeddingInfo() {
+        fetch('/api/system/vitals')
+            .then(res => res.json())
+            .then(data => {
+                if (data.embedding_dim) {
+                    const modeLabel = data.embedding_mode === 'ollama' ? 'Ollama' : 'Local';
+                    dimLabel.innerText = `${data.embedding_dim} (${modeLabel})`;
+                } else {
+                    dimLabel.innerText = 'N/A (empty index)';
+                }
+            })
+            .catch(() => { dimLabel.innerText = '--'; });
+    }
+    updateEmbeddingInfo();
+
+</script>
+
+<script>
+    const cloud = document.getElementById('vector-cloud-container');
+    if (cloud) {
+        const clusterColors = ['#00dbe7', '#ffb952', '#dcb8ff', '#ffb4ab'];
+        const clusterLabels = ['LOCAL_KB', 'SQL_CACHE', 'INDEX_CORE', 'LOGS'];
+        
+        for (let i = 0; i < 200; i++) {
+            const pointContainer = document.createElement('div');
+            pointContainer.className = 'absolute';
+            
+            const point = document.createElement('div');
+            point.className = 'vector-point rounded-full cursor-pointer relative z-10';
+            
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            
+            const clusterIdx = Math.floor(Math.random() * 4);
+            const clusterX = [20, 75, 45, 80][clusterIdx];
+            const clusterY = [25, 20, 65, 80][clusterIdx];
+            
+            const isClustered = Math.random() > 0.35;
+            const finalTop = isClustered ? clusterY + (Math.random() - 0.5) * 20 : top;
+            const finalLeft = isClustered ? clusterX + (Math.random() - 0.5) * 20 : left;
+
+            const size = Math.random() * 3 + 2;
+            
+            pointContainer.style.top = `${finalTop}%`;
+            pointContainer.style.left = `${finalLeft}%`;
+            
+            point.style.width = `${size}px`;
+            point.style.height = `${size}px`;
+            point.style.backgroundColor = isClustered ? clusterColors[clusterIdx] : '#849495';
+            point.style.opacity = Math.random() * 0.8 + 0.2;
+            point.style.animationDelay = `${Math.random() * 5}s`;
+            
+            if (Math.random() > 0.92) {
+                const label = document.createElement('div');
+                label.className = 'node-label absolute left-full ml-2 top-1/2 -translate-y-1/2 bg-surface-container-high/90 border border-outline-variant/30 px-2 py-1 whitespace-nowrap z-20';
+                label.innerHTML = `<span class="font-data-mono text-[9px] text-primary">VECTOR_${Math.floor(Math.random()*9999)}</span><br><span class="font-data-mono text-[8px] text-on-surface-variant">${isClustered ? clusterLabels[clusterIdx] : 'RAW_DATA'}</span>`;
+                pointContainer.appendChild(label);
+            }
+
+            pointContainer.appendChild(point);
+            cloud.appendChild(pointContainer);
+        }
+    }
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+        }
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+</body>
+</html>

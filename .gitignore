@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Secrets — config.json can hold a live gemini_api_key written via POST /api/config
+backend/config.json
+.env
+
+# Vector store (regenerable from the knowledge base via /api/documents/sync or build_index.py)
+backend/vector_store/
+backend/antigravity_vector_store/
+backend/demo_vector_store/
+backend/demo_knowledge_base/
+backend/test_vector_store/
+backend/test_knowledge/
+backend/test_sync_kb/
+backend/test_sync_store/
+
+.DS_Store
+*.log

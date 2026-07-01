@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AETHER.OS | Agent Config</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="config.css"/>
+</head>
+<body class="font-body-base">
+<div class="fixed inset-0 scanline z-50 pointer-events-none"></div>
+<div class="flex h-screen overflow-hidden">
+<aside class="hidden md:flex flex-col h-screen py-gutter gap-4 bg-surface-container-lowest/80 backdrop-blur-xl border-r border-outline-variant/10 w-64 z-40 shrink-0">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center ai-pulse">
+<span class="material-symbols-outlined text-primary text-sm">hub</span>
+</div>
+<div>
+<h2 class="font-headline-md-mobile text-headline-md-mobile text-primary leading-none">JARVIS.CORE</h2>
+<span class="font-label-caps text-[9px] text-on-surface-variant/60 tracking-[0.2em]">SYSTEM ACTIVE</span>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col px-4 gap-2">
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant/60 hover:bg-surface-container-highest/50 hover:text-primary transition-all duration-200 group" href="/command.html">
+<span class="material-symbols-outlined">radar</span>
+<span class="font-label-caps text-label-caps group-hover:translate-x-1 transition-transform">Command</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant/60 hover:bg-surface-container-highest/50 hover:text-primary transition-all duration-200 group" href="/stream.html">
+<span class="material-symbols-outlined">stream</span>
+<span class="font-label-caps text-label-caps group-hover:translate-x-1 transition-transform">Stream</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-on-surface-variant/60 hover:bg-surface-container-highest/50 hover:text-primary transition-all duration-200 group" href="/knowledge.html">
+<span class="material-symbols-outlined">database</span>
+<span class="font-label-caps text-label-caps group-hover:translate-x-1 transition-transform">Knowledge</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-primary border-r-2 border-primary bg-primary/5 transition-all duration-200 group" href="/config.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps group-hover:translate-x-1 transition-transform">Config</span>
+</a>
+</nav>
+<div class="px-6 mb-4">
+<button class="w-full py-3 bg-[#00f2ff] text-black font-label-caps text-label-caps font-bold shadow-[0_0_15px_rgba(0,242,255,0.4)] hover:brightness-110 transition-all active:scale-95" onclick="triggerSync()">
+                    SYNC DATABASE
+                </button>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 bg-background relative overflow-hidden">
+<header class="flex justify-between items-center w-full px-margin-safe h-16 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/20 z-30 shrink-0">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary drop-shadow-[0_0_8px_rgba(0,242,255,0.5)]">AETHER.OS</h1>
+<nav class="hidden md:flex gap-6">
+<a class="font-data-mono text-data-mono text-on-surface-variant hover:text-primary transition-colors" href="/knowledge.html">WORKSPACE</a>
+<a class="font-data-mono text-data-mono text-primary border-b-2 border-primary" href="/config.html">CONFIG</a>
+<a class="font-data-mono text-data-mono text-on-surface-variant hover:text-primary transition-colors" href="/stream.html">ANALYTICS</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-high/50 border border-outline-variant/30 text-data-mono py-1 px-4 w-64 focus:outline-none focus:border-primary/50 text-xs transition-all uppercase" placeholder="QUERY_CORE..." type="text" onkeydown="if(event.key==='Enter') window.location.href='/stream.html?query='+encodeURIComponent(this.value)"/>
+<span class="material-symbols-outlined absolute right-3 top-1.5 text-sm text-outline">search</span>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-all active:scale-95" onclick="window.location.href='/config.html'">memory</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-all active:scale-95" onclick="window.location.href='/command.html'">sensors</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-80 transition-all active:scale-95" onclick="window.location.href='/config.html'">terminal</span>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col md:flex-row overflow-hidden">
+<section class="w-full md:w-[450px] overflow-y-auto border-r border-outline-variant/10 p-gutter flex flex-col gap-8 custom-scroll bg-surface-container-lowest/30 shrink-0">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SYS.01</span>
+<h2 class="font-headline-md text-headline-md text-primary">PARAMETERS</h2>
+</div>
+<span class="px-2 py-0.5 bg-primary/10 border border-primary/20 text-primary font-data-mono text-[10px] rounded">LIVE_SYNC</span>
+</div>
+
+<div class="flex flex-col gap-3">
+    <label class="font-label-caps text-label-caps text-outline">GEMINI_API_KEY (WRITE-ONLY)</label>
+    <div class="relative flex items-center">
+        <input type="password" id="api-key-input" class="bg-surface-container-high/50 border border-outline-variant/30 text-primary text-xs py-2.5 px-3 w-full focus:outline-none focus:border-primary/50 placeholder:text-outline-variant" placeholder="Enter API Key to configure..." onblur="saveCurrentConfig()"/>
+    </div>
+    <p class="font-data-mono text-[9px] text-on-surface-variant/40 italic" id="api-key-status">Status: Checking...</p>
+</div>
+
+<div class="flex flex-col gap-3">
+<label class="font-label-caps text-label-caps text-outline">NEURAL_MODEL</label>
+<div class="grid grid-cols-2 gap-2">
+<button id="model-aether-btn" class="glass-panel p-3 border-primary/40 bg-primary/10 flex flex-col gap-1 text-left">
+<span class="font-data-mono text-primary text-xs font-bold">AETHER-1</span>
+<span class="font-data-mono text-[9px] text-on-surface-variant/60">Optimized Synthesis (Flash)</span>
+</button>
+<button id="model-gpt4-btn" class="glass-panel p-3 border-outline-variant/20 hover:border-primary/30 transition-colors flex flex-col gap-1 text-left">
+<span class="font-data-mono text-on-surface text-xs">GPT-4.CORE</span>
+<span class="font-data-mono text-[9px] text-on-surface-variant/60">Reasoning High-Density (Pro)</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-outline">TEMPERATURE</label>
+<span class="font-data-mono text-primary text-sm" id="temp-value">0.00</span>
+</div>
+<input class="w-full" max="2" min="0" step="0.01" type="range" id="temp-range" oninput="document.getElementById('temp-value').innerText=parseFloat(this.value).toFixed(2); checkTempWarning(this.value);" onchange="saveCurrentConfig()"/>
+<div id="temp-warning" class="text-[9px] text-yellow-500 font-data-mono bg-yellow-500/10 border border-yellow-500/20 px-2 py-1 hidden uppercase animate-pulse"></div>
+<p class="font-data-mono text-[10px] text-on-surface-variant/40 italic">Determines output randomness. Lower values strictly enforce context.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-outline">TOP_P</label>
+<span class="font-data-mono text-primary text-sm" id="topp-value">0.95</span>
+</div>
+<input class="w-full" max="1" min="0" step="0.01" type="range" id="topp-range" oninput="document.getElementById('topp-value').innerText=parseFloat(this.value).toFixed(2)" onchange="saveCurrentConfig()"/>
+<p class="font-data-mono text-[10px] text-on-surface-variant/40 italic">Nucleus sampling distribution.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-outline">FREQUENCY_PENALTY</label>
+<span class="font-data-mono text-primary text-sm" id="freq-value">0.00</span>
+</div>
+<input class="w-full" max="2" min="-2" step="0.01" type="range" id="freq-range" oninput="document.getElementById('freq-value').innerText=parseFloat(this.value).toFixed(2)" onchange="saveCurrentConfig()"/>
+<p class="font-data-mono text-[10px] text-on-surface-variant/40 italic">Reduces repetitive token usage.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-outline">PRESENCE_PENALTY</label>
+<span class="font-data-mono text-primary text-sm" id="pres-value">0.00</span>
+</div>
+<input class="w-full" max="2" min="-2" step="0.01" type="range" id="pres-range" oninput="document.getElementById('pres-value').innerText=parseFloat(this.value).toFixed(2)" onchange="saveCurrentConfig()"/>
+<p class="font-data-mono text-[10px] text-on-surface-variant/40 italic">Encourages novel topic expansion.</p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-end">
+<label class="font-label-caps text-label-caps text-outline">MAX_TOKENS</label>
+<span class="font-data-mono text-primary text-sm" id="tokens-value">2048</span>
+</div>
+<input class="w-full" max="8192" min="256" step="256" type="range" id="tokens-range" oninput="document.getElementById('tokens-value').innerText=this.value" onchange="saveCurrentConfig()"/>
+<p class="font-data-mono text-[10px] text-on-surface-variant/40 italic">Upper limit for completion generation.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<label class="font-label-caps text-label-caps text-outline">AGENT_FLAGS</label>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between p-3 glass-panel border-outline-variant/10">
+<span class="font-data-mono text-xs text-on-surface">STREAMING_MODE</span>
+<div id="streaming-toggle" class="w-10 h-5 bg-surface-container-highest rounded-full relative cursor-pointer" onclick="toggleOption(this)">
+<div class="absolute left-1 top-1 w-3 h-3 bg-outline rounded-full transition-all"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 glass-panel border-outline-variant/10">
+<span class="font-data-mono text-xs text-on-surface">MEMORY_PERSISTENCE</span>
+<div id="memory-toggle" class="w-10 h-5 bg-surface-container-highest rounded-full relative cursor-pointer" onclick="toggleOption(this)">
+<div class="absolute left-1 top-1 w-3 h-3 bg-outline rounded-full transition-all"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 bg-error-container/5 border-2 border-dashed border-error/30 rounded-lg">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+<span class="font-label-caps text-[11px] text-error font-bold tracking-widest">CRITICAL_OVERRIDE</span>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-error text-on-error font-label-caps py-3 hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2" onclick="flushContextCache()">
+<span class="material-symbols-outlined text-sm">delete_sweep</span>
+                                FLUSH_CONTEXT_CACHE
+                            </button>
+<button class="w-full border border-error/50 text-error font-label-caps py-2 text-[10px] hover:bg-error/10 transition-colors" onclick="forceReboot()">
+                                FORCE_REBOOT_KERNEL
+                            </button>
+</div>
+</div>
+</section>
+<section class="flex-1 flex flex-col bg-surface-container-lowest relative overflow-hidden">
+<div class="flex flex-col md:flex-row flex-1 overflow-hidden">
+<div class="flex-1 flex flex-col min-w-0">
+<div class="flex items-center justify-between px-gutter py-3 bg-surface-container-low border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm">terminal</span>
+<span class="font-label-caps text-label-caps text-on-surface">RUNTIME_LOGS</span>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-data-mono text-[10px] text-primary">CONNECTED</span>
+</div>
+<span class="font-data-mono text-[10px] text-outline" id="uptime-label">UPTIME: --:--:--</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-6 font-data-mono text-[11px] terminal-scroll selection:bg-primary/30 selection:text-white" id="terminal">
+</div>
+<div class="p-3 bg-surface border-t border-outline-variant/10 flex items-center gap-3">
+<span class="text-primary font-bold">&gt;&nbsp;</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-data-mono text-xs text-primary placeholder:text-outline/40 uppercase" id="terminal-input" placeholder="EXECUTE_COMMAND..." type="text"/>
+</div>
+</div>
+<aside class="w-full md:w-64 border-l border-outline-variant/10 bg-surface-container-low/30 p-gutter flex flex-col gap-6 overflow-y-auto custom-scroll shrink-0">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">monitoring</span>
+<span class="font-label-caps text-[11px] text-on-surface">SYSTEM_HEALTH</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between font-data-mono text-[9px] text-on-surface-variant">
+<span>CPU_THREAD_01</span>
+<span class="text-primary">ACTIVE</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full rounded-full overflow-hidden">
+<div id="cpu-health-bar" class="h-full bg-primary w-[0%] shadow-[0_0_8px_#00f2ff]"></div>
+</div>
+<div class="flex justify-between font-data-mono text-[9px] text-outline">
+<span id="cpu-health-val">CPU: --%</span>
+<span>LOAD_BALANCED</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between font-data-mono text-[9px] text-on-surface-variant">
+<span>MEMORY_CORE</span>
+<span class="text-primary">ACTIVE</span>
+</div>
+<div class="h-1 bg-surface-container-highest w-full rounded-full overflow-hidden">
+<div id="mem-health-bar" class="h-full bg-primary w-[0%] shadow-[0_0_8px_#00f2ff]"></div>
+</div>
+<div class="flex justify-between font-data-mono text-[9px] text-outline">
+<span id="mem-health-val">MEM: -- GB</span>
+<span id="mem-health-total">-- GB TOTAL</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-outline-variant/10">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-[9px] text-outline">GLOBAL_LATENCY</span>
+<span class="font-data-mono text-lg text-primary" id="health-latency-val">--ms</span>
+</div>
+<div class="mt-4 flex flex-col gap-1">
+<span class="font-label-caps text-[9px] text-outline">INDEXED_VECTORS</span>
+<span class="font-data-mono text-lg text-primary" id="health-throughput-val">--</span>
+</div>
+</div>
+</aside>
+</div>
+</section>
+</main>
+</div>
+</div>
+
+<script>
+    const terminal = document.getElementById('terminal');
+    const input = document.getElementById('terminal-input');
+    
+    const cpuHealthBar = document.getElementById('cpu-health-bar');
+    const cpuHealthVal = document.getElementById('cpu-health-val');
+    const memHealthBar = document.getElementById('mem-health-bar');
+    const memHealthVal = document.getElementById('mem-health-val');
+    const memHealthTotal = document.getElementById('mem-health-total');
+    const healthLatencyVal = document.getElementById('health-latency-val');
+    const healthThroughputVal = document.getElementById('health-throughput-val');
+    const uptimeLabel = document.getElementById('uptime-label');
+
+    const tempWarning = document.getElementById('temp-warning');
+
+    const aetherBtn = document.getElementById('model-aether-btn');
+    const gpt4Btn = document.getElementById('model-gpt4-btn');
+    let selectedModelName = 'gemini-2.5-flash';
+
+    aetherBtn.addEventListener('click', () => {
+        selectedModelName = 'gemini-2.5-flash';
+        updateModelUI();
+        saveCurrentConfig();
+    });
+
+    gpt4Btn.addEventListener('click', () => {
+        selectedModelName = 'gemini-2.5-pro';
+        updateModelUI();
+        saveCurrentConfig();
+    });
+
+    const sliders = {
+        temperature: { range: document.getElementById('temp-range'), val: document.getElementById('temp-value') },
+        top_p: { range: document.getElementById('topp-range'), val: document.getElementById('topp-value') },
+        frequency_penalty: { range: document.getElementById('freq-range'), val: document.getElementById('freq-value') },
+        presence_penalty: { range: document.getElementById('pres-range'), val: document.getElementById('pres-value') },
+        max_tokens: { range: document.getElementById('tokens-range'), val: document.getElementById('tokens-value') }
+    };
+
+    const streamingToggle = document.getElementById('streaming-toggle');
+    const memoryToggle = document.getElementById('memory-toggle');
+    const apiKeyInput = document.getElementById('api-key-input');
+    const apiKeyStatus = document.getElementById('api-key-status');
+
+    function checkTempWarning(temp) {
+        if (parseFloat(temp) > 0.3) {
+            tempWarning.innerText = "WARNING: HIGH TEMPERATURE REDUCES RAG GROUNDING";
+            tempWarning.style.display = "block";
+        } else {
+            tempWarning.style.display = "none";
+        }
+    }
+
+    function updateModelUI() {
+        if (selectedModelName === 'gemini-2.5-flash' || selectedModelName === 'AETHER-1') {
+            aetherBtn.className = "glass-panel p-3 border-primary/40 bg-primary/10 flex flex-col gap-1 text-left w-full";
+            aetherBtn.firstElementChild.className = "font-data-mono text-primary text-xs font-bold";
+            gpt4Btn.className = "glass-panel p-3 border-outline-variant/20 hover:border-primary/30 transition-colors flex flex-col gap-1 text-left w-full";
+            gpt4Btn.firstElementChild.className = "font-data-mono text-on-surface text-xs";
+        } else {
+            gpt4Btn.className = "glass-panel p-3 border-primary/40 bg-primary/10 flex flex-col gap-1 text-left w-full";
+            gpt4Btn.firstElementChild.className = "font-data-mono text-primary text-xs font-bold";
+            aetherBtn.className = "glass-panel p-3 border-outline-variant/20 hover:border-primary/30 transition-colors flex flex-col gap-1 text-left w-full";
+            aetherBtn.firstElementChild.className = "font-data-mono text-on-surface text-xs";
+        }
+    }
+
+    function setSliderValue(name, val) {
+        const s = sliders[name];
+        if (s) {
+            s.range.value = val;
+            s.val.innerText = parseFloat(val).toFixed(2);
+        }
+    }
+
+    function setToggleValue(toggle, active) {
+        const knob = toggle.firstElementChild;
+        if (active) {
+            toggle.className = "w-10 h-5 bg-primary rounded-full relative cursor-pointer shadow-[0_0_8px_rgba(0,242,255,0.4)]";
+            knob.className = "absolute right-1 top-1 w-3 h-3 bg-black rounded-full transition-all";
+            knob.style.left = "auto";
+            knob.style.right = "4px";
+            toggle.dataset.active = "true";
+        } else {
+            toggle.className = "w-10 h-5 bg-surface-container-highest rounded-full relative cursor-pointer";
+            knob.className = "absolute left-1 top-1 w-3 h-3 bg-outline rounded-full transition-all";
+            knob.style.left = "4px";
+            knob.style.right = "auto";
+            toggle.dataset.active = "false";
+        }
+    }
+
+    function toggleOption(toggle) {
+        const active = toggle.dataset.active !== "true";
+        setToggleValue(toggle, active);
+        saveCurrentConfig();
+    }
+
+    function loadConfig() {
+        fetch('/api/config')
+            .then(res => res.json())
+            .then(cfg => {
+                selectedModelName = cfg.model_name;
+                updateModelUI();
+                
+                setSliderValue('temperature', cfg.temperature);
+                setSliderValue('top_p', cfg.top_p);
+                setSliderValue('frequency_penalty', cfg.frequency_penalty);
+                setSliderValue('presence_penalty', cfg.presence_penalty);
+                
+                sliders.max_tokens.range.value = cfg.max_tokens;
+                sliders.max_tokens.val.innerText = cfg.max_tokens;
+                
+                setToggleValue(streamingToggle, cfg.streaming_mode);
+                setToggleValue(memoryToggle, cfg.memory_persistence);
+                
+                if (cfg.api_key_configured) {
+                    apiKeyStatus.innerText = "Status: CONFIGURED (Write-Only)";
+                    apiKeyStatus.className = "font-data-mono text-[9px] text-green-400 italic";
+                } else {
+                    apiKeyStatus.innerText = "Status: NOT CONFIGURED";
+                    apiKeyStatus.className = "font-data-mono text-[9px] text-red-400 italic";
+                }
+                
+                checkTempWarning(cfg.temperature);
+            })
+            .catch(err => console.error("Error loading config:", err));
+    }
+
+    function saveCurrentConfig() {
+        const payload = {
+            model_name: selectedModelName,
+            temperature: parseFloat(sliders.temperature.range.value),
+            top_p: parseFloat(sliders.top_p.range.value),
+            frequency_penalty: parseFloat(sliders.frequency_penalty.range.value),
+            presence_penalty: parseFloat(sliders.presence_penalty.range.value),
+            max_tokens: parseInt(sliders.max_tokens.range.value),
+            streaming_mode: streamingToggle.dataset.active === "true",
+            memory_persistence: memoryToggle.dataset.active === "true"
+        };
+        
+        if (apiKeyInput.value.trim()) {
+            payload.gemini_api_key = apiKeyInput.value.trim();
+        }
+        
+        fetch('/api/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("Saved config:", data);
+            if (payload.gemini_api_key) {
+                apiKeyInput.value = '';
+                apiKeyStatus.innerText = "Status: CONFIGURED (Write-Only)";
+                apiKeyStatus.className = "font-data-mono text-[9px] text-green-400 italic";
+            }
+        })
+        .catch(err => console.error("Failed to save config:", err));
+    }
+
+    function updateVitals() {
+        fetch('/api/system/vitals')
+            .then(res => res.json())
+            .then(data => {
+                cpuHealthVal.innerText = `CPU: ${Math.round(data.cpu_usage)}%`;
+                cpuHealthBar.style.width = Math.round(data.cpu_usage) + '%';
+                
+                memHealthVal.innerText = `MEM: ${data.memory_allocated_gb} GB`;
+                memHealthTotal.innerText = `${data.memory_total_gb} GB TOTAL`;
+                const memPercent = Math.round((data.memory_allocated_gb / data.memory_total_gb) * 100);
+                memHealthBar.style.width = memPercent + '%';
+                
+                healthLatencyVal.innerText = data.latency_ms + 'ms';
+                healthThroughputVal.innerText = data.total_vectors.toLocaleString();
+                
+                const totalSeconds = data.uptime_seconds;
+                const hours = Math.floor(totalSeconds / 3600);
+                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                const seconds = totalSeconds % 60;
+                const pad = num => String(num).padStart(2, '0');
+                uptimeLabel.innerText = `UPTIME: ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+            })
+            .catch(err => console.error("Error updates vitals:", err));
+    }
+
+    let displayedLogCount = 0;
+    function fetchLogs() {
+        fetch('/api/logs')
+            .then(res => res.json())
+            .then(logs => {
+                if (logs.length < displayedLogCount) {
+                    terminal.innerHTML = '';
+                    displayedLogCount = 0;
+                }
+                for (let i = displayedLogCount; i < logs.length; i++) {
+                    addRealLogLine(logs[i]);
+                }
+                displayedLogCount = logs.length;
+            })
+            .catch(err => console.error(err));
+    }
+
+    function addRealLogLine(msg) {
+        const div = document.createElement('div');
+        div.className = 'mb-1.5 flex gap-3 opacity-0 transition-opacity duration-300';
+        
+        let levelColor = 'text-primary';
+        let tagColor = 'text-primary/50';
+        let label = '[INFO]';
+        
+        if (msg.includes('[WARNING]') || msg.includes('WARNING')) {
+            levelColor = 'text-secondary';
+            tagColor = 'text-secondary/50';
+            label = '[WARN]';
+        } else if (msg.includes('[ERROR]') || msg.includes('ERROR') || msg.includes('failed') || msg.includes('Failed')) {
+            levelColor = 'text-error';
+            tagColor = 'text-error/50';
+            label = '[ERROR]';
+        } else if (msg.includes('[DEBUG]')) {
+            levelColor = 'text-outline-variant';
+            tagColor = 'text-outline-variant/50';
+            label = '[DEBUG]';
+        }
+        
+        div.innerHTML = `<span class="${levelColor} selection:bg-primary/20">${escapeHtml(msg)}</span>`;
+        terminal.appendChild(div);
+        setTimeout(() => div.classList.remove('opacity-0'), 10);
+        terminal.scrollTop = terminal.scrollHeight;
+        
+        if (terminal.children.length > 500) {
+            terminal.removeChild(terminal.firstChild);
+        }
+    }
+
+    function escapeHtml(text) {
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+    }
+
+    function flushContextCache() {
+        if (!confirm("Are you sure you want to flush the log buffer and config states?")) return;
+        fetch('/api/config/flush', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                terminal.innerHTML = '';
+                displayedLogCount = 0;
+                console.log(data.message);
+            })
+            .catch(err => alert(err));
+    }
+
+    function forceReboot() {
+        if (!confirm("Force reloading the vector storage index from disk?")) return;
+        fetch('/api/config/reboot', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(err => alert(err));
+    }
+
+    function triggerSync() {
+        fetch('/api/documents/sync', { method: 'POST' })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => alert(err));
+    }
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && input.value) {
+            const cmd = input.value.trim().toUpperCase();
+            if (cmd === 'HELP') {
+                addRealLogLine('COMMANDS: HELP, CLEAR, SYNC, REBOOT, VITALS');
+            } else if (cmd === 'CLEAR') {
+                terminal.innerHTML = '';
+                displayedLogCount = 0;
+            } else if (cmd === 'SYNC') {
+                triggerSync();
+                addRealLogLine('EXEC_CMD: SYNC TRIGGERED');
+            } else if (cmd === 'REBOOT') {
+                forceReboot();
+                addRealLogLine('EXEC_CMD: REBOOT INDEX TRIGGERED');
+            } else {
+                addRealLogLine(`EXEC_CMD: COMMAND "${cmd}" NOT RECOGNIZED`);
+            }
+            input.value = '';
+        }
+    });
+
+    loadConfig();
+    updateVitals();
+    fetchLogs();
+    
+    setInterval(updateVitals, 2500);
+    setInterval(fetchLogs, 1500);
+
+</script>
+</body>
+</html>

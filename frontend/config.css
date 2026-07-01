@@ -1,0 +1,50 @@
+body {
+    background-color: #0e0e10;
+    color: #e5e1e4;
+    overflow: hidden;
+}
+.glass-panel {
+    background: rgba(18, 18, 20, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.scanline {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+.terminal-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.terminal-scroll::-webkit-scrollbar-thumb {
+    background: #00f2ff33;
+}
+input[type="range"] {
+    -webkit-appearance: none;
+    background: #1c1b1d;
+    height: 4px;
+    border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #00f2ff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00f2ff;
+}
+.ai-pulse {
+    animation: pulse 3s infinite;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 242, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
+}
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(132, 148, 149, 0.2);
+}

@@ -1,0 +1,72 @@
+body {
+    background-color: #0e0e10;
+    color: #e5e1e4;
+    overflow: hidden;
+}
+
+.glass-panel {
+    background: rgba(18, 18, 20, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.scanline {
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+
+.node-active {
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+    border-color: #00f2ff;
+}
+
+.pulse-cyan {
+    animation: pulse-cyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-cyan {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+.stream-line {
+    stroke-dasharray: 8;
+    animation: dash 20s linear infinite;
+}
+
+@keyframes dash {
+    to { stroke-dashoffset: -1000; }
+}
+
+.ai-pulse-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, #00f2ff 0%, transparent 70%);
+    filter: blur(8px);
+    opacity: 0.4;
+    animation: ai-pulse 3s ease-in-out infinite;
+}
+
+@keyframes ai-pulse {
+    0%, 100% { transform: scale(0.8); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+.chart-bar {
+    animation: grow-bar 1.5s ease-out forwards;
+    transform-origin: bottom;
+}
+
+@keyframes grow-bar {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+.glow-line {
+    filter: drop-shadow(0 0 4px #00f2ff);
+}
+
+.log-gradient-overlay {
+    background: linear-gradient(to bottom, transparent 80%, #131315 100%);
+}

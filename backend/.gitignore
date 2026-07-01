@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Vector stores (regenerable from the knowledge base)
+vector_store/
+antigravity_vector_store/
+demo_vector_store/
+demo_knowledge_base/
+test_vector_store/
+test_knowledge/
+test_sync_kb/
+test_sync_store/
+
+# Secrets (config.json can hold a live gemini_api_key written via the /api/config endpoint)
+.env
+config.json

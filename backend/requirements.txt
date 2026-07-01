@@ -1,0 +1,17 @@
+# Core
+numpy>=1.24
+
+# Vector index (falls back to a pure-NumPy engine automatically if absent)
+faiss-cpu>=1.7.4
+
+# PDF ingestion (only needed if your knowledge base contains .pdf files)
+pypdf>=4.0
+
+# Local embeddings (either this OR a local Ollama server, not both required)
+sentence-transformers>=2.6
+
+# Only needed if using --embedding-mode ollama
+requests>=2.31
+
+# LLM synthesis
+google-genai>=0.3
