@@ -123,7 +123,7 @@ async def lifespan(app: FastAPI):
     yield
     logging.info("Shutting down API server...")
 
-app = FastAPI(title="AETHER.OS RAG System API", lifespan=lifespan)
+app = FastAPI(title="JarvisRAG RAG System API", lifespan=lifespan)
 
 class ConfigUpdate(BaseModel):
     model_name: Optional[str] = Field(None, pattern="^(AETHER-1|GPT-4.CORE|gemini-2.5-flash|gemini-2.5-pro)$")
